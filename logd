@@ -1,7 +1,7 @@
 
 #!/bin/sh
 
-# PROVIDE log_captive
+# PROVIDE: log_captive
 # REQUIRE: networking
 
 # move to /etc/rc.d or /usr/local/etc/rc.d

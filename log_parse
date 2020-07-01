@@ -18,16 +18,16 @@ start()
     return 1
   fi
   echo $! > ${clog1pid}
-  echo "create process " `cat ${clog1pid}`
+  echo "Started process " `cat ${clog1pid}`
 
 
-  /usr/local/sbin/clog -f /var/log/portalauth.log >> /var/log/portalauth.log.txt &
+  /usr/local/sbin/clog -f /var/log/portalauth.log | grep logportalauth >> /var/log/portalauth.log.txt &
   if [ $? != 0 ]; then
     echo "Fail exec clog"
     return 1
   fi
   echo $! > ${clog2pid}
-  echo "create process " `cat ${clog1pid}`
+  echo "Started process " `cat ${clog1pid}`
 
 
   (/usr/bin/tail -f -n0 /var/log/filter.log.txt  & echo $! > ${tailpid}) | \
@@ -37,7 +37,7 @@ start()
     echo "Fail exec"
     return 1
   fi
-  echo "create process " `cat ${tailpid}`
+  echo "Started process " `cat ${tailpid}`
 
   echo "Running"
 }
@@ -45,16 +45,19 @@ start()
 stop()
 {
   if [ -e "${clog1pid}" ]; then
+    echo "Killing " `cat ${clog1pid}`
     kill `cat ${clog1pid}`
     rm ${clog1pid}
   fi
 
   if [ -e "${clog2pid}" ]; then
+    echo "Killing " `cat ${clog2pid}`
     kill `cat ${clog2pid}`
     rm ${clog2pid}
   fi
 
   if [ -e "${tailpid}" ]; then
+    echo "Killing " `cat ${tailpid}`
     kill `cat ${tailpid}`
     rm ${tailpid}
   fi
@@ -75,7 +78,7 @@ status()
     echo "Is running OK"
     return 0
   else
-    echo "Fail, try restart"
+    echo "Not running"
     return 1
   fi
 }

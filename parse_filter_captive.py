@@ -23,6 +23,24 @@ line_parsed = dict()
 
 offset = 0
 
+#     line_parsed['mes'],
+#     line_parsed['dia'],
+#     line_parsed['time'],
+#     line_parsed['ip_src'],
+#     line_parsed['port_src'],
+#     line_parsed['ip_dst'],
+#     line_parsed['port_dst'],
+#     line_parsed['iface'],
+#     line_parsed['direction'],
+#     line_parsed['proto'],   # tcp | udp | icmp ...
+#     line_parsed['lenght'],  # len frame
+#     line_parsed['action'],  # block | pass
+#     line_parsed['user'],
+#     line_parsed['mac_address'],
+
+key_print = ['mes', 'dia', 'time', 'ip_src', 'port_src', 'ip_dst', 'port_dst',
+        'iface', 'direction', 'proto', 'lenght', 'action', 'mac', 'user']
+
 def main():
     # with open(filter, "r") as filter_f:
         # for line_filter in filter_f:
@@ -107,24 +125,12 @@ def main():
             except:
                 pass
 
-            # print(line_parsed)
-            print(
-                line_parsed['mes'],
-                line_parsed['dia'],
-                line_parsed['time'],
-                line_parsed['ip_src'],
-                line_parsed['port_src'],
-                line_parsed['ip_dst'],
-                line_parsed['port_dst'],
-                line_parsed['iface'],
-                line_parsed['direction'],
-                line_parsed['proto'],   # tcp | udp | icmp ...
-                line_parsed['lenght'],  # len frame
-                line_parsed['action'],  # block | pass
-                line_parsed['user'],
-                line_parsed['mac_address'],
-                flush = True
-                )
+
+            for key in key_print:
+                if key in line_parsed.keys() and line_parsed[key]:
+                    print( line_parsed[key], end = ' ' )
+
+            print(flush = True)
 
 if __name__ == '__main__':
     try:
