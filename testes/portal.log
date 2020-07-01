@@ -1,0 +1,8 @@
+Mar 16 20:18:15 cp_nv logportalauth[46614]: Zone: cp_nv - ACCEPT: user1, 08:00:27:ff:ff:ff, 200.200.200.200
+Mar 16 20:19:07 cp_nv logportalauth[98882]: Zone: cp_nv - DISCONNECT: user1, 08:00:27:ff:ff:ff, 10.10.1.255
+Mar 16 22:48:29 cp_nv logportalauth[50838]: Zone: cp_nv - ACCEPT: user1, dc:bf:e9:ff:ff:ff, 10.10.1.254
+Mar 17 11:57:27 cp_nv logportalauth[33082]: Zone: cp_nv - ACCEPT: user1, 40:2c:f4:ff:ff:ff, 10.10.1.255
+Mar 17 12:07:47 cp_nv logportalauth[94716]: Zone: cp_nv - DISCONNECT: user1, 40:2c:f4:ff:ff:ff, 10.10.1.255
+Mar 17 12:09:56 cp_nv logportalauth[25435]: Zone: cp_nv - ACCEPT: user1, 40:2c:f4:ff:ff:ff, 10.10.1.255
+Mar 17 14:38:31 cp_nv logportalauth[11209]: Zone: cp_nv - IDLE TIMEOUT: user1, 40:2c:f4:ff:ff:ff, 10.10.1.255
+Mar 17 20:14:43 cp_nv logportalauth[77606]: Zone: cp_nv - ACCEPT: user1, 40:2c:f4:ff:ff:ff, 10.10.1.255
