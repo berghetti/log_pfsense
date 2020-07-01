@@ -10,8 +10,31 @@ clog1pid="/var/run/clog1.pid"
 clog2pid="/var/run/clog2.pid"
 tailpid="/var/run/tail.pid"
 
+stop()
+{
+  if [ -e "${clog1pid}" ]; then
+    echo "Killing " `cat ${clog1pid}`
+    kill `cat ${clog1pid}`
+    rm ${clog1pid}
+  fi
+
+  if [ -e "${clog2pid}" ]; then
+    echo "Killing " `cat ${clog2pid}`
+    kill `cat ${clog2pid}`
+    rm ${clog2pid}
+  fi
+
+  if [ -e "${tailpid}" ]; then
+    echo "Killing " `cat ${tailpid}`
+    kill `cat ${tailpid}`
+    rm ${tailpid}
+  fi
+
+}
+
 start()
 {
+  stop
   /usr/local/sbin/clog -f /var/log/filter.log > /var/log/filter.log.txt &
   if [ $? != 0 ]; then
     echo "Fail exec clog"
@@ -39,30 +62,7 @@ start()
   fi
   echo "Started process " `cat ${tailpid}`
 
-  echo "Running"
-}
-
-stop()
-{
-  if [ -e "${clog1pid}" ]; then
-    echo "Killing " `cat ${clog1pid}`
-    kill `cat ${clog1pid}`
-    rm ${clog1pid}
-  fi
-
-  if [ -e "${clog2pid}" ]; then
-    echo "Killing " `cat ${clog2pid}`
-    kill `cat ${clog2pid}`
-    rm ${clog2pid}
-  fi
-
-  if [ -e "${tailpid}" ]; then
-    echo "Killing " `cat ${tailpid}`
-    kill `cat ${tailpid}`
-    rm ${tailpid}
-  fi
-
-  echo "Stoped"
+  echo "Started"
 }
 
 restart()
@@ -91,7 +91,7 @@ usage()
 
 case $1 in
   start) start ;;
-  stop) stop ;;
+  stop) stop ; echo "Stopped";;
   restart) stop ; start ;;
   status) status ;;
   *) usage ;;

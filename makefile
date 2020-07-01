@@ -15,7 +15,7 @@ install:
 	cp logd $(DIR_RC)/
 	chmod +x $(DIR_RC)/logd
 
-	@ echo "Instaled, now 'make start' to start process" 
+	@ echo "Instaled, now 'make start' to start process"
 
 uninstall:
 	rm $(DIR_BIN)/parse_filter_captive.py
@@ -30,3 +30,10 @@ stop:
 
 status:
 	$(DIR_RC)/logd status
+
+debug:
+	(/usr/bin/tail -f -n0 /var/log/filter.log.txt  & echo $! > teste.pid) | \
+	/usr/local/bin/python3.6 /usr/local/bin/parse_filter_captive.py
+
+clean_debug:
+	rm `cat teste.pid`
