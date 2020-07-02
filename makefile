@@ -12,10 +12,11 @@ install:
 	cp log_parse $(DIR_BIN)/
 	chmod +x $(DIR_BIN)/log_parse
 
-	cp logd $(DIR_RC)/
-	chmod +x $(DIR_RC)/logd
+	cp logd.sh $(DIR_RC)/
+	chmod +x $(DIR_RC)/logd.sh
 
-	@ echo "Instaled, now 'make start' to start process"
+	@ echo "\nInstaled, now 'make start' to start process"
+	@ echo  "process already startup on boot system"
 
 uninstall:
 	rm $(DIR_BIN)/parse_filter_captive.py
@@ -23,13 +24,13 @@ uninstall:
 	rm $(DIR_RC)/logd
 
 start:
-	$(DIR_RC)/logd start
+	$(DIR_RC)/logd.sh onestart
 
 stop:
-	$(DIR_RC)/logd stop
+	$(DIR_RC)/logd.sh onestop
 
 status:
-	$(DIR_RC)/logd status
+	$(DIR_RC)/logd.sh onestatus
 
 debug:
 	(/usr/bin/tail -f -n0 /var/log/filter.log.txt  & echo $! > teste.pid) | \

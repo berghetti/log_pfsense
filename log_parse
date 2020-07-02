@@ -10,6 +10,30 @@ clog1pid="/var/run/clog1.pid"
 clog2pid="/var/run/clog2.pid"
 tailpid="/var/run/tail.pid"
 
+check_pre()
+{
+  if [ ! -x /usr/local/sbin/clog ]; then
+    echo "/usr/local/sbin/clog not found"
+    exit 1
+  fi
+
+  if [ ! -x /usr/bin/tail ]; then
+    echo "/usr/bin/tail not found"
+    exit 1
+  fi
+
+  if [ ! -x /usr/local/bin/python3.6 ]; then
+    echo "/usr/local/bin/python3.6 not found"
+    exit 1
+  fi
+
+  if [ ! -x /usr/bin/logger ]; then
+    echo "/usr/bin/logger not found"
+    exit 1
+  fi
+
+}
+
 stop()
 {
   if [ -e "${clog1pid}" ]; then
@@ -35,6 +59,8 @@ stop()
 start()
 {
   stop
+  check_pre
+  
   /usr/local/sbin/clog -f /var/log/filter.log > /var/log/filter.log.txt &
   if [ $? != 0 ]; then
     echo "Fail exec clog"

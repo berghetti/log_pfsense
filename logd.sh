@@ -4,8 +4,8 @@
 # PROVIDE: log_captive
 # REQUIRE: networking
 
-# move to /etc/rc.d or /usr/local/etc/rc.d
-# and use service log_parse.d start | stop | status
+# move to /usr/local/etc/rc.d
+# and use service logd.sh onestart | onestop | onestatus
 
 . /etc/rc.subr
 
