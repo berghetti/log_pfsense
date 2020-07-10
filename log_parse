@@ -70,7 +70,7 @@ start()
   echo "Started process " `cat ${clog1pid}`
 
 
-  /usr/local/sbin/clog -f /var/log/portalauth.log | grep logportalauth >> /var/log/portalauth.log.txt &
+  /usr/local/sbin/clog -f /var/log/portalauth.log | grep --line-bufered "logportalauth" >> /var/log/portalauth.log.txt &
   if [ $? != 0 ]; then
     echo "Fail exec clog"
     return 1
