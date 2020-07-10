@@ -39,7 +39,7 @@ offset = 0
 #     line_parsed['mac_address'],
 
 key_print = ['mes', 'dia', 'time', 'ip_src', 'port_src', 'ip_dst', 'port_dst',
-        'iface', 'direction', 'proto', 'lenght', 'action', 'mac', 'user']
+        'iface', 'direction', 'proto', 'lenght', 'action', 'user', 'mac_address']
 
 def main():
     # with open(filter, "r") as filter_f:
@@ -66,7 +66,7 @@ def main():
             line_parsed['direction'] = data_filter[7]
             line_parsed['ip_version'] = data_filter[8]
 
-            # # ipv4
+            # ipv4
             if line_parsed['ip_version'] == "4":
                 line_parsed['proto_id'] = data_filter[15]
                 line_parsed['proto'] = data_filter[16]
@@ -74,7 +74,7 @@ def main():
                 line_parsed['ip_src'] = data_filter[18]
                 line_parsed['ip_dst'] = data_filter[19]
                 offset = 19
-            # # ipv6
+            # ipv6
             elif line_parsed['ip_version'] == "6":
                 line_parsed['proto'] = data_filter[12]
                 line_parsed['proto_id'] = data_filter[13]
